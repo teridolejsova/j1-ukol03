@@ -7,6 +7,27 @@ public class Pocitac {
     Pamet ram;
     Disk pevnydisk;
 
+    public void vytvorSouborOVelikosti(long velikost) {
+        if (jeZapnuty()) {
+            if (pevnydisk.getVyuziteMisto() + velikost <= pevnydisk.getKapacita()) {
+                pevnydisk.setVyuziteMisto(pevnydisk.getVyuziteMisto() + velikost);
+            } else {
+                System.err.println("Disk je již plný");
+            }
+        }
+    }
+
+    public void vymazSouboryOVelikosti(long velikost) {
+        //Metoda vymazSouboryOVelikosti(long velikost) sníží proměnnou vyuziteMisto o velikost. vyuziteMisto nemůže klesnout pod 0.
+        if (jeZapnuty()) {
+            if ((pevnydisk.getVyuziteMisto() - velikost) >= 0) {
+                pevnydisk.setVyuziteMisto(pevnydisk.getVyuziteMisto() - velikost);
+            } else {
+                System.err.println("Disk nesmí mít kapacitu menší než je 0.");
+            }
+        }
+    }
+
     public boolean jeZapnuty() {
         //mohu cele smazat a napsat jen
         // return jeZapnuty
@@ -19,25 +40,24 @@ public class Pocitac {
     }
 
     public void zapniSe() {
-        if(jeZapnuty()){
+        if (jeZapnuty()) {
             System.err.println("Počítač už jede");
-        } else{
-            if(getCpu() == null || getPevnydisk()==null || getRam()==null){
+        } else {
+            if (getCpu() == null || getPevnydisk() == null || getRam() == null) {
                 System.err.println("Počítači chybí součástky.");
                 //todo jednotlive komponenty
-                if(getRam()==null){
+                if (getRam() == null) {
                     System.out.println("Chybí ram");
                 }
-            }else{
+            } else {
                 jeZapnuty = true;
                 System.out.println("Počítač se zapnul");
             }
-
         }
     }
 
     public void vypniSe() {
-        if(jeZapnuty()){
+        if (jeZapnuty()) {
             jeZapnuty = false;
             System.out.println("Počítač se vypnul");
         }

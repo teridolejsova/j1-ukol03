@@ -8,6 +8,7 @@ public class Procesor {
     public String getVyrobce() {
         return vyrobce;
     }
+
     public void setVyrobce(String vyrobce) {
         this.vyrobce = vyrobce;
     }

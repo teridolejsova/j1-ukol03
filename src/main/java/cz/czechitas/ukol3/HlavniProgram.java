@@ -17,11 +17,15 @@ public class HlavniProgram {
         Pocitac pocitac = new Pocitac();
 
         Disk disk = new Disk();
-        disk.setKapacita(239_379_410_944L);
+
+        disk.setKapacita(10); // 239_379_410_944L
         pocitac.setPevnydisk(disk);
         //pro lepsi kontrolu nastavena 0. Realné využité místo je 187229093888 b.
         disk.setVyuziteMisto(0);
 
+        Disk druhyDisk = new Disk();
+        druhyDisk.setKapacita(10);
+        pocitac.setDruhyDisk(druhyDisk);
 
         Pamet pamet = new Pamet();
         pamet.setKapacita(8_000_000_000L);
@@ -46,12 +50,11 @@ public class HlavniProgram {
         pocitac.vypniSe();*/
 
         pocitac.zapniSe();
-        pocitac.vytvorSouborOVelikosti(100_000_000);
+        pocitac.vytvorSouborOVelikosti(6);
         System.out.println(disk.getVyuziteMisto());
-        pocitac.vytvorSouborOVelikosti(300_000_000_000L);
-        pocitac.vymazSouboryOVelikosti(200_000_000_000L);
-        System.out.println(disk.getVyuziteMisto());
-
+        pocitac.vytvorSouborOVelikosti(6);
+        System.out.println(pocitac.toString());
+        pocitac.vytvorSouborOVelikosti(6);
 
     }
 

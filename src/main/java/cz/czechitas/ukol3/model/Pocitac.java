@@ -6,13 +6,19 @@ public class Pocitac {
     Procesor cpu;
     Pamet ram;
     Disk pevnydisk;
+    Disk druhyDisk;
 
     public void vytvorSouborOVelikosti(long velikost) {
         if (jeZapnuty()) {
             if (pevnydisk.getVyuziteMisto() + velikost <= pevnydisk.getKapacita()) {
                 pevnydisk.setVyuziteMisto(pevnydisk.getVyuziteMisto() + velikost);
             } else {
-                System.err.println("Disk je již plný");
+                if (druhyDisk.getVyuziteMisto() + velikost <= druhyDisk.getKapacita()) {
+                    druhyDisk.setVyuziteMisto(druhyDisk.getVyuziteMisto() + velikost);
+                }else{
+                    System.err.println("Není místo ani na jednom z disků.");
+                }
+
             }
         }
     }
@@ -63,6 +69,14 @@ public class Pocitac {
         }
     }
 
+    public Disk getDruhyDisk() {
+        return druhyDisk;
+    }
+
+    public void setDruhyDisk(Disk druhyDisk) {
+        this.druhyDisk = druhyDisk;
+    }
+
     public Procesor getCpu() {
         return cpu;
     }
@@ -94,8 +108,8 @@ public class Pocitac {
                 ", cpu=" + cpu +
                 ", ram=" + ram +
                 ", pevnydisk=" + pevnydisk +
+                ", druhyDisk=" + druhyDisk +
                 '}';
     }
-
 }
 

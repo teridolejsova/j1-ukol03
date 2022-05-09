@@ -29,7 +29,10 @@ public class Pocitac {
             if ((pevnydisk.getVyuziteMisto() - velikost) >= 0) {
                 pevnydisk.setVyuziteMisto(pevnydisk.getVyuziteMisto() - velikost);
             } else {
-                System.err.println("Disk nesmí mít kapacitu menší než je 0.");
+                if ((druhyDisk.getVyuziteMisto() - velikost) >= 0) {
+                    druhyDisk.setVyuziteMisto(druhyDisk.getVyuziteMisto() - velikost);
+            }else{
+                    System.err.println("Vše již bylo smazáno.");}
             }
         }
     }

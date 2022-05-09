@@ -56,6 +56,9 @@ public class HlavniProgram {
         System.out.println(pocitac.toString());
         pocitac.vytvorSouborOVelikosti(6);
 
+        pocitac.vymazSouboryOVelikosti(6);
+        pocitac.vymazSouboryOVelikosti(6);
+        pocitac.vymazSouboryOVelikosti(6);
     }
 
 }

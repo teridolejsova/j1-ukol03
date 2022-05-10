@@ -10,10 +10,10 @@ public class Pocitac {
 
     public void vytvorSouborOVelikosti(long velikost) {
         if (jeZapnuty()) {
-            if (pevnydisk.getVyuziteMisto() + velikost <= pevnydisk.getKapacita()) {
+            if (vejdeSeNaDisk(pevnydisk,velikost)) {
                 pevnydisk.setVyuziteMisto(pevnydisk.getVyuziteMisto() + velikost);
             } else {
-                if (druhyDisk.getVyuziteMisto() + velikost <= druhyDisk.getKapacita()) {
+                if (vejdeSeNaDisk(druhyDisk,velikost)) {
                     druhyDisk.setVyuziteMisto(druhyDisk.getVyuziteMisto() + velikost);
                 }else{
                     System.err.println("Není místo ani na jednom z disků.");
@@ -23,18 +23,26 @@ public class Pocitac {
         }
     }
 
+    private boolean vejdeSeNaDisk(Disk disk,Long velikost) {
+        return disk.getVyuziteMisto() + velikost <= disk.getKapacita();
+    }
+
     public void vymazSouboryOVelikosti(long velikost) {
         //Metoda vymazSouboryOVelikosti(long velikost) sníží proměnnou vyuziteMisto o velikost. vyuziteMisto nemůže klesnout pod 0.
         if (jeZapnuty()) {
-            if ((pevnydisk.getVyuziteMisto() - velikost) >= 0) {
+            if (jesteJeCoMazat(pevnydisk,velikost)) {
                 pevnydisk.setVyuziteMisto(pevnydisk.getVyuziteMisto() - velikost);
             } else {
-                if ((druhyDisk.getVyuziteMisto() - velikost) >= 0) {
+                if (jesteJeCoMazat(druhyDisk,velikost)) {
                     druhyDisk.setVyuziteMisto(druhyDisk.getVyuziteMisto() - velikost);
             }else{
                     System.err.println("Vše již bylo smazáno.");}
             }
         }
+    }
+
+    private boolean jesteJeCoMazat(Disk disk, long velikost) {
+        return (pevnydisk.getVyuziteMisto() - velikost) >= 0;
     }
 
     public boolean jeZapnuty() {
